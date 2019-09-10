@@ -1,0 +1,12 @@
+.idea
+*.in
+*.out
+*.iml
+*.o
+lib/
+out/
+build/
+resources/
+webapp/
+*.7z
+*.zip
