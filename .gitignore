@@ -3,7 +3,6 @@
 *.out
 *.iml
 *.o
-lib/
 out/
 build/
 resources/

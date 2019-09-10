@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -8,28 +9,29 @@ public class Main {
     private static final String DELIMETERS = "+*";
     private static final String REGEXP = "([" + DELIMETERS + "]\\d+)+";
 
-    private static boolean validate(String s1, String s2) {
-        if (!s1.matches(REGEXP) || !s2.matches(REGEXP)) {
+    private static void validateInput(String[] args) {
+        if (args.length != 2) {
+            showUsage();
+            throw new IllegalArgumentException();
+        }
+        Objects.requireNonNull(args[0]);
+        Objects.requireNonNull(args[1]);
+        if (!args[0].matches(REGEXP) || !args[1].matches(REGEXP)) {
             System.out.println("Invalid input, please check README");
-            return false;
+            throw new IllegalArgumentException();
         }
-        if (s1.length() != s2.length()) {
+        if (args[0].length() != args[1].length()) {
             System.out.println("Lists have different operations numbers");
-            return false;
+            throw new IllegalArgumentException();
         }
-        return true;
+    }
+
+    private static void showUsage() {
+        System.out.println("Usage: ./run.sh <list1> <list2>" );
     }
 
     public static void main(String[] args) {
-        if (args.length < 2) {
-            System.out.println("Enter two operation lists separated by whitespace");
-            return;
-        }
-        String s1 = args[0];
-        String s2 = args[1];
-        if (!validate(s1, s2)) {
-            return;
-        }
+        validateInput(args);
         List<List<String>> tokensList = new ArrayList<>();
         for (String list : args) {
             StringTokenizer tokenizer = new StringTokenizer(list, DELIMETERS, true);
@@ -39,12 +41,12 @@ public class Main {
                 String stringNumber = tokenizer.nextToken();
                 if (stringNumber.length() > 6) {
                     System.out.println("Numbers are too big");
-                    return;
+                    throw new IllegalArgumentException();
                 }
                 tokensList.get(tokensList.size() - 1).add(delim + stringNumber);
             }
         }
-        Solver solver = new Solver();
-        System.out.println(solver.areEquals(tokensList.get(0).toArray(new String[0]), tokensList.get(1).toArray(new String[0])));
+        System.out.println(new Solver().areEqual(tokensList.get(0).toArray(new String[0]),
+                tokensList.get(1).toArray(new String[0])));
     }
 }

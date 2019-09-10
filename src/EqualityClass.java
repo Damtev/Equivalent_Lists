@@ -3,22 +3,26 @@ import operations.Operator;
 
 import java.util.List;
 
-public class EqualityClass<E extends Operation> {
+class EqualityClass<E extends Operation> {
 
-    public List<E> operations;
+    private List<E> operations;
     private Operator type;
 
-    public void put(E operation) {
+    void put(E operation) {
         type = operation.operator;
         operations.add(operation);
     }
 
-    public void setOperations(List<E> operations, Operator type) {
+    List<E> getOperations() {
+        return operations;
+    }
+
+    void setOperations(List<E> operations, Operator type) {
         this.type = type;
         this.operations = operations;
     }
 
-    public Operator getType() {
+    Operator getType() {
         return type;
     }
 }

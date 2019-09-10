@@ -8,13 +8,9 @@ import static operations.Operator.MULT;
 
 class Solver {
 
-    private Simplifier simplifier;
+    private Simplifier simplifier = new Simplifier();
 
-    Solver() {
-        simplifier = new Simplifier();
-    }
-
-    boolean areEquals(String[] tokens1, String[] tokens2) {
+    boolean areEqual(String[] tokens1, String[] tokens2) {
         List<EqualityClass<Operation>> first = new ArrayList<>();
         List<EqualityClass<Operation>> second = new ArrayList<>();
         read(tokens1, first);
@@ -30,8 +26,8 @@ class Solver {
             if (equalityClass1.getType() != equalityClass2.getType()) {
                 return false;
             }
-            List<Operation> operations1 = equalityClass1.operations;
-            List<Operation> operations2 = equalityClass2.operations;
+            List<Operation> operations1 = equalityClass1.getOperations();
+            List<Operation> operations2 = equalityClass2.getOperations();
             if (operations1.size() != operations2.size()) {
                 return false;
             }
@@ -86,7 +82,7 @@ class Solver {
 
     private void sort(List<EqualityClass<Operation>> equalityClasses) {
         for (EqualityClass<Operation> equalityClass : equalityClasses) {
-            equalityClass.operations.sort(Operation::compareTo);
+            equalityClass.getOperations().sort(Operation::compareTo);
         }
     }
 }

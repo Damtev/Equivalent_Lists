@@ -3,26 +3,24 @@ import java.util.List;
 
 class Simplifier {
 
-    private final int MAX_NUMBER;
     private int[] minPrimeDividers;
     private List<Integer> primeNumbers;
 
     Simplifier() {
-        MAX_NUMBER = Main.MAX_NUMBER;
-        minPrimeDividers = new int[MAX_NUMBER + 1];
+        minPrimeDividers = new int[Main.MAX_NUMBER + 1];
         primeNumbers = new ArrayList<>();
         sieve();
     }
 
     private void sieve() {
-        for (int number = 2; number <= MAX_NUMBER; number++) {
+        for (int number = 2; number <= Main.MAX_NUMBER; number++) {
             if (minPrimeDividers[number] == 0) {
                 minPrimeDividers[number] = number;
                 primeNumbers.add(number);
             }
             for (int j = 0; j < primeNumbers.size() && primeNumbers.get(j) <= minPrimeDividers[number]; j++) {
                 int next = number * primeNumbers.get(j);
-                if (next > MAX_NUMBER) {
+                if (next > Main.MAX_NUMBER) {
                     break;
                 }
                 minPrimeDividers[next] = primeNumbers.get(j);
