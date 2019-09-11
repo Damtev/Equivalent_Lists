@@ -18,13 +18,6 @@ public class Tester {
     private static final int MAX_MULT_LEN = 20;
 
     @Test
-    public void allTests() {
-        onlySum();
-        onlyMult();
-        all();
-    }
-
-    @Test
     public void onlySum() {
         test(new String[]{"+"}, MAX_IN_SUM, MAX_SUM_LEN);
     }
