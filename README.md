@@ -12,13 +12,16 @@ ops=[+5, *2, +12]
 
 Напишите программу, принимающую на вход два списка и дающую булевский ответ: одинаковый ли результат их применения к случайному исходному значению или разный.
 
-**Using**:
+**Using tool**:
 
-Run `run.sh` with 2 arguments: first list and second, separated by whitespace.
-Lists should match following regular expression: `([+*]\\d+)+`. 
-Numbers in lists should be non-negative and less than `1_000_000`. The program returns `true` then and only then lists have a same result 
+Run `run.sh` with 2 arguments: `<list1>` and `<list2>`, separated by whitespace. Lists must satisfy following conditionals:
+* Lists should match following regular expression: `([+*]\\d+)+` 
+* Lists must be the same to the order of operations
+* Numbers in lists should be non-negative and less than `1_000_000`. 
+
+The program returns `true` then and only then lists have a same result 
 with any number.
 
+**Using tests**:
 
-
-
+Run `run_test.sh` to run tests.

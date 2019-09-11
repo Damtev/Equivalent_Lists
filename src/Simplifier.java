@@ -4,6 +4,7 @@ import java.util.List;
 class Simplifier {
 
     private int[] minPrimeDividers;
+
     private List<Integer> primeNumbers;
 
     Simplifier() {

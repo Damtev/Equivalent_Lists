@@ -8,9 +8,9 @@ import static operations.Operator.MULT;
 
 class Solver {
 
-    private Simplifier simplifier = new Simplifier();
+    private final static Simplifier simplifier = new Simplifier();
 
-    boolean areEqual(String[] tokens1, String[] tokens2) {
+    static boolean areEqual(String[] tokens1, String[] tokens2) {
         List<EqualityClass<Operation>> first = new ArrayList<>();
         List<EqualityClass<Operation>> second = new ArrayList<>();
         read(tokens1, first);
@@ -41,7 +41,7 @@ class Solver {
         return true;
     }
 
-    private void read(String[] tokens, List<EqualityClass<Operation>> list) {
+    private static void read(String[] tokens, List<EqualityClass<Operation>> list) {
         for (String token : tokens) {
             List<Operation> operations = new ArrayList<>();
             Operator type;
@@ -80,7 +80,7 @@ class Solver {
         }
     }
 
-    private void sort(List<EqualityClass<Operation>> equalityClasses) {
+    private static void sort(List<EqualityClass<Operation>> equalityClasses) {
         for (EqualityClass<Operation> equalityClass : equalityClasses) {
             equalityClass.getOperations().sort(Operation::compareTo);
         }
